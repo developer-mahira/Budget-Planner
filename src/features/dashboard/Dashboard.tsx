@@ -2,11 +2,11 @@ import React, { useMemo } from 'react';
 import { TrendingUp, TrendingDown, AlertCircle, DollarSign } from 'lucide-react';
 import { 
   PieChart, Pie, Cell, 
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, 
-  LineChart, Line, ResponsiveContainer 
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, 
+  ResponsiveContainer 
 } from 'recharts';
 import Card from '../../components/common/Card';
-import { CATEGORIES, INITIAL_BUDGETS, INITIAL_EXPENSES } from '../../utils/constants';
+import { INITIAL_BUDGETS, INITIAL_EXPENSES } from '../../utils/constants';
 
 const Dashboard: React.FC = () => {
   // Calculate statistics using useMemo for performance
@@ -140,7 +140,7 @@ const Dashboard: React.FC = () => {
                   cx="50%"
                   cy="50%"
                   labelLine={false}
-                 label={({ name, percent }) => `${name}: ${(percent ? percent * 100 : 0).toFixed(0)}%`}
+                  label={({ name, percent }) => `${name}: ${((percent || 0) * 100).toFixed(0)}%`}
                   outerRadius={80}
                   fill="#8884d8"
                   dataKey="value"

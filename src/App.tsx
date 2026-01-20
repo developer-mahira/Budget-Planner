@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import Sidebar from './components/layout/Sidebar';
@@ -7,7 +7,6 @@ import Loader from './components/common/Loader';
 import WelcomeScreen from './features/auth/WelcomeScreen';
 
 // Lazy load feature components for better performance
-// Update the lazy imports in App.tsx
 const Dashboard = lazy(() => import('./features/dashboard/Dashboard'));
 const BudgetPlanner = lazy(() => import('./features/budget/BudgetPlanner'));
 const Expenses = lazy(() => import('./features/expenses/Expenses'));
@@ -17,7 +16,7 @@ const Reports = lazy(() => import('./features/reports/Reports'));
 const Settings = lazy(() => import('./features/settings/Settings'));
 
 const App: React.FC = () => {
-  const [isOnboardingComplete, setIsOnboardingComplete] = React.useState(false);
+  const [isOnboardingComplete, setIsOnboardingComplete] = useState(false);
 
   if (!isOnboardingComplete) {
     return <WelcomeScreen onComplete={() => setIsOnboardingComplete(true)} />;
