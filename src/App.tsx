@@ -10,7 +10,7 @@ import WelcomeScreen from './features/auth/WelcomeScreen';
 const Dashboard = lazy(() => import('./features/dashboard/Dashboard'));
 const BudgetPlanner = lazy(() => import('./features/budget/BudgetPlanner'));
 const Expenses = lazy(() => import('./features/expenses/Expenses'));
-const Calculator = lazy(() => import('./features/calculator/Calculator'));
+const Calculator = lazy(() => import('./features/calculator/calculator'));
 const Notes = lazy(() => import('./features/notes/Notes'));
 const Reports = lazy(() => import('./features/reports/Reports'));
 const Settings = lazy(() => import('./features/settings/Settings'));
