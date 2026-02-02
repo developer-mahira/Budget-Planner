@@ -7,7 +7,7 @@ import Loader from './components/common/Loader';
 
 // Import components directly
 import Login from './features/auth/Login';
-import Signup from './features/auth/Singup';
+import Signup from './features/auth/Signup';
 import WelcomeScreen from './features/auth/WelcomeScreen';
 import ForgotPassword from './features/auth/ForgotPassword'; 
 import Dashboard from './features/dashboard/Dashboard';
