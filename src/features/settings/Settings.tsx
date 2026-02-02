@@ -18,8 +18,8 @@ const Settings: React.FC = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [currency, setCurrency] = useState('USD');
   const [profile, setProfile] = useState({
-    name: 'John Doe',
-    email: 'john@example.com',
+    name: 'Mahira Noor',
+    email: 'mahiranoor.088@gmail.com',
     monthlyIncome: '4000',
     budgetGoal: '20',
   });

@@ -1,29 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TrendingUp, DollarSign, Target, ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import Button from '../../components/common/Button';
 import Input from '../../components/common/Input';
+import { useAuth } from '../../context/AuthContext';
 
-interface WelcomeScreenProps {
-  onComplete: () => void;
-}
-
-const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onComplete }) => {
+const WelcomeScreen: React.FC = () => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     monthlyIncome: '',
     budgetGoal: '',
     currency: 'USD',
   });
+  
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/dashboard', { replace: true });
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleNext = () => {
     if (step < 3) {
       setStep(step + 1);
     } else {
-      // Save onboarding data to localStorage or state
-      localStorage.setItem('onboardingComplete', 'true');
+      // Save preferences to localStorage
       localStorage.setItem('userPreferences', JSON.stringify(formData));
-      onComplete();
+      // Redirect to signup
+      navigate('/signup', { 
+        state: { preferences: formData },
+        replace: true 
+      });
     }
+  };
+
+  // Redirect to login if user clicks "Already have an account"
+  const handleExistingAccount = () => {
+    navigate('/login', { replace: true });
   };
 
   return (
@@ -119,8 +135,17 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onComplete }) => {
             }
             icon={step < 3 ? <ArrowRight className="w-4 h-4" /> : undefined}
           >
-            {step < 3 ? 'Continue' : 'Get Started'}
+            {step < 3 ? 'Continue' : 'Create Account'}
           </Button>
+
+          <div className="mt-4 text-center">
+            <button
+              onClick={handleExistingAccount}
+              className="text-sm text-gray-600 hover:text-gray-900"
+            >
+              Already have an account? Sign in
+            </button>
+          </div>
         </div>
 
         <p className="text-center text-sm text-gray-500 mt-6">

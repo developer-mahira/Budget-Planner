@@ -1,50 +1,56 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import Sidebar from './components/layout/Sidebar';
-import Navbar from './components/layout/Navbar';
-import WelcomeScreen from './features/auth/WelcomeScreen';
+import { AuthProvider } from './context/AuthContext';
+import ProtectedRoute from './components/common/ProtectedRoute';
+import Loader from './components/common/Loader';
 
-// Import components directly (remove lazy loading temporarily)
+// Import components directly
+import Login from './features/auth/Login';
+import Signup from './features/auth/Singup';
+import WelcomeScreen from './features/auth/WelcomeScreen';
+import ForgotPassword from './features/auth/ForgotPassword'; 
 import Dashboard from './features/dashboard/Dashboard';
 import BudgetPlanner from './features/budget/BudgetPlanner';
 import Expenses from './features/expenses/Expenses';
-import Calculator from './features/calculator/calculator'; // or Calculator
+import Calculator from './features/calculator/calculator';
 import Notes from './features/notes/Notes';
 import Reports from './features/reports/Reports';
 import Settings from './features/settings/Settings';
+import MainLayout from './components/layout/MainLayout';
 
 const App: React.FC = () => {
-  const [isOnboardingComplete, setIsOnboardingComplete] = useState(false);
-
-  if (!isOnboardingComplete) {
-    return <WelcomeScreen onComplete={() => setIsOnboardingComplete(true)} />;
-  }
-
   return (
-    <Router>
-      <div className="min-h-screen bg-gray-50">
-        <div className="flex">
-          <Sidebar />
-          <div className="flex-1">
-            <Navbar />
-            <main className="p-6">
-              <Routes>
-                <Route path="/" element={<Navigate to="/dashboard" replace />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/budget" element={<BudgetPlanner />} />
-                <Route path="/expenses" element={<Expenses />} />
-                <Route path="/calculator" element={<Calculator />} />
-                <Route path="/notes" element={<Notes />} />
-                <Route path="/reports" element={<Reports />} />
-                <Route path="/settings" element={<Settings />} />
-              </Routes>
-            </main>
-          </div>
-        </div>
+    <AuthProvider>
+      <Router>
         <Toaster position="top-right" />
-      </div>
-    </Router>
+        <Routes>
+          {/* Public routes */}
+          <Route path="/welcome" element={<WelcomeScreen />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          
+          {/* Protected routes */}
+          <Route path="/" element={
+            <ProtectedRoute>
+              <MainLayout />
+            </ProtectedRoute>
+          }>
+            <Route index element={<Navigate to="/dashboard" replace />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="budget" element={<BudgetPlanner />} />
+            <Route path="expenses" element={<Expenses />} />
+            <Route path="calculator" element={<Calculator />} />
+            <Route path="notes" element={<Notes />} />
+            <Route path="reports" element={<Reports />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
+          
+          {/* Redirect unknown routes */}
+          <Route path="*" element={<Navigate to="/login" replace />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 };
 
