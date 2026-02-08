@@ -13,7 +13,7 @@ import ForgotPassword from './features/auth/ForgotPassword';
 import Dashboard from './features/dashboard/Dashboard';
 import BudgetPlanner from './features/budget/BudgetPlanner';
 import Expenses from './features/expenses/Expenses';
-import Calculator from './features/calculator/calculator'
+import Calculator from './features/calculator/Calculator';
 import Notes from './features/notes/Notes';
 import Reports from './features/reports/Reports';
 import Settings from './features/settings/Settings';
