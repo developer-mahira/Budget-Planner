@@ -5,7 +5,6 @@ import { Toaster } from 'react-hot-toast';
 import './index.css';
 import App from './App';
 import { store } from './store';
-import Calculator from "./features/calculator/calculator";
 
 
 const root = ReactDOM.createRoot(
