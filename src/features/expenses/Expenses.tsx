@@ -113,39 +113,41 @@ const Expenses: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Expense Management</h1>
-          <p className="text-gray-600">Track and manage your daily expenses</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Expense Management</h1>
+          <p className="text-gray-600 text-sm sm:text-base">Track and manage your daily expenses</p>
         </div>
         <Button
           onClick={() => setIsModalOpen(true)}
           icon={<Plus className="w-4 h-4" />}
+          size="sm"
         >
-          Add Expense
+          <span className="hidden sm:inline">Add Expense</span>
+          <span className="sm:hidden">Add</span>
         </Button>
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+        <Card className="p-4 sm:p-6">
           <div className="text-center">
-            <p className="text-sm text-gray-500">Total Expenses</p>
-            <p className="text-3xl font-bold text-secondary">${totalExpenses.toFixed(2)}</p>
+            <p className="text-xs sm:text-sm text-gray-500">Total Expenses</p>
+            <p className="text-2xl sm:text-3xl font-bold text-secondary">${totalExpenses.toFixed(2)}</p>
           </div>
         </Card>
-        <Card>
+        <Card className="p-4 sm:p-6">
           <div className="text-center">
-            <p className="text-sm text-gray-500">Total Transactions</p>
-            <p className="text-3xl font-bold text-gray-900">{filteredExpenses.length}</p>
+            <p className="text-xs sm:text-sm text-gray-500">Total Transactions</p>
+            <p className="text-2xl sm:text-3xl font-bold text-gray-900">{filteredExpenses.length}</p>
           </div>
         </Card>
-        <Card>
+        <Card className="p-4 sm:p-6">
           <div className="text-center">
-            <p className="text-sm text-gray-500">Average Expense</p>
-            <p className="text-3xl font-bold text-primary">
+            <p className="text-xs sm:text-sm text-gray-500">Average Expense</p>
+            <p className="text-2xl sm:text-3xl font-bold text-primary">
               ${filteredExpenses.length > 0 ? (totalExpenses / filteredExpenses.length).toFixed(2) : '0.00'}
             </p>
           </div>
@@ -154,7 +156,7 @@ const Expenses: React.FC = () => {
 
       {/* Filters */}
       <Card>
-        <div className="flex flex-col md:flex-row gap-4">
+        <div className="flex flex-col sm:flex-row gap-4">
           <div className="flex-1">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -167,7 +169,7 @@ const Expenses: React.FC = () => {
             </div>
           </div>
           <div className="flex gap-4">
-            <div className="w-48">
+            <div className="w-full sm:w-48">
               <div className="relative">
                 <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <select

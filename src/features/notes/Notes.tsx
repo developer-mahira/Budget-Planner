@@ -123,11 +123,11 @@ const Notes: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
+    <div className="space-y-4 sm:space-y-6">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Notes</h1>
-          <p className="text-gray-600">Keep track of your financial thoughts and ideas</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Notes</h1>
+          <p className="text-gray-600 text-sm sm:text-base">Keep track of your financial thoughts and ideas</p>
         </div>
         <Button
           onClick={() => {
@@ -136,8 +136,10 @@ const Notes: React.FC = () => {
             setIsModalOpen(true);
           }}
           icon={<Plus className="w-4 h-4" />}
+          size="sm"
         >
-          Add Note
+          <span className="hidden sm:inline">Add Note</span>
+          <span className="sm:hidden">Add</span>
         </Button>
       </div>
 

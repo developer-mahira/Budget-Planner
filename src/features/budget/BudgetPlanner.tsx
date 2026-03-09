@@ -81,11 +81,11 @@ const BudgetPlanner: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
+    <div className="space-y-4 sm:space-y-6">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Budget Planner</h1>
-          <p className="text-gray-600">Plan and manage your monthly budgets</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Budget Planner</h1>
+          <p className="text-gray-600 text-sm sm:text-base">Plan and manage your monthly budgets</p>
         </div>
         <Button 
           onClick={() => {
@@ -94,29 +94,31 @@ const BudgetPlanner: React.FC = () => {
             setIsModalOpen(true);
           }}
           icon={<Plus className="w-4 h-4" />}
+          size="sm"
         >
-          Add Budget
+          <span className="hidden sm:inline">Add Budget</span>
+          <span className="sm:hidden">Add</span>
         </Button>
       </div>
 
       {/* Budget Overview Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+        <Card className="p-4 sm:p-6">
           <div className="text-center">
-            <p className="text-sm text-gray-500">Total Budget</p>
-            <p className="text-3xl font-bold text-primary">${stats.totalBudget.toFixed(2)}</p>
+            <p className="text-xs sm:text-sm text-gray-500">Total Budget</p>
+            <p className="text-2xl sm:text-3xl font-bold text-primary">${stats.totalBudget.toFixed(2)}</p>
           </div>
         </Card>
-        <Card>
+        <Card className="p-4 sm:p-6">
           <div className="text-center">
-            <p className="text-sm text-gray-500">Total Spent</p>
-            <p className="text-3xl font-bold text-secondary">${stats.totalSpent.toFixed(2)}</p>
+            <p className="text-xs sm:text-sm text-gray-500">Total Spent</p>
+            <p className="text-2xl sm:text-3xl font-bold text-secondary">${stats.totalSpent.toFixed(2)}</p>
           </div>
         </Card>
-        <Card>
+        <Card className="p-4 sm:p-6">
           <div className="text-center">
-            <p className="text-sm text-gray-500">Remaining</p>
-            <p className="text-3xl font-bold text-green-600">${stats.remaining.toFixed(2)}</p>
+            <p className="text-xs sm:text-sm text-gray-500">Remaining</p>
+            <p className="text-2xl sm:text-3xl font-bold text-green-600">${stats.remaining.toFixed(2)}</p>
           </div>
         </Card>
       </div>

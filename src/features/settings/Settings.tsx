@@ -46,30 +46,30 @@ const Settings: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Settings</h1>
-        <p className="text-gray-600">Manage your account preferences and app settings</p>
+        <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Settings</h1>
+        <p className="text-gray-600 text-sm sm:text-base">Manage your account preferences and app settings</p>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-6">
-        {/* Sidebar Navigation */}
+      <div className="flex flex-col lg:flex-row gap-4 sm:gap-6">
+        {/* Sidebar Navigation - Horizontal scroll on mobile */}
         <div className="lg:w-64">
           <Card className="sticky top-6">
-            <nav className="space-y-1">
+            <nav className="flex lg:flex-col gap-1 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   className={`
-                    w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors
+                    flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors whitespace-nowrap
                     ${activeTab === tab.id
                       ? 'bg-accent text-white'
                       : 'text-gray-700 hover:bg-gray-100'
                     }
                   `}
                 >
-                  <tab.icon className="w-4 h-4" />
+                  <tab.icon className="w-4 h-4 flex-shrink-0" />
                   {tab.label}
                 </button>
               ))}

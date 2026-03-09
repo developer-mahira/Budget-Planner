@@ -13,8 +13,12 @@ import {
   X
 } from 'lucide-react';
 
-const Sidebar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+interface SidebarProps {
+  isOpen: boolean;
+  setIsOpen: (open: boolean) => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
 
   useEffect(() => {
@@ -27,9 +31,8 @@ const Sidebar: React.FC = () => {
     };
 
     window.addEventListener('resize', handleResize);
-    handleResize(); // Initial check
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [setIsOpen]);
 
   const navItems = [
     { path: '/dashboard', icon: Home, label: 'Dashboard' },

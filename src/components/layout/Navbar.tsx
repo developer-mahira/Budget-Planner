@@ -4,7 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import Input from '../common/Input';
 import { useAuth } from '../../context/AuthContext';
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  onMenuClick?: () => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onMenuClick }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -51,7 +55,10 @@ const Navbar: React.FC = () => {
     <header className="sticky top-0 z-30 bg-white border-b border-gray-200 px-4 sm:px-6 py-3 sm:py-4">
       <div className="flex items-center justify-between gap-4">
         {/* Mobile menu button - Now in navbar */}
-        <button className="lg:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors">
+        <button 
+          className="lg:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          onClick={onMenuClick}
+        >
           <Menu className="w-5 h-5 text-gray-600" />
         </button>
         

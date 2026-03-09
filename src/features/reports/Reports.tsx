@@ -41,53 +41,55 @@ const Reports: React.FC = () => {
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#82CA9D'];
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
+    <div className="space-y-4 sm:space-y-6">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Reports & Analytics</h1>
-          <p className="text-gray-600">Detailed insights into your financial performance</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Reports & Analytics</h1>
+          <p className="text-gray-600 text-sm sm:text-base">Detailed insights into your financial performance</p>
         </div>
-        <div className="flex gap-3">
-          <Button variant="ghost" icon={<Filter className="w-4 h-4" />}>
-            Filter
+        <div className="flex flex-wrap gap-2 sm:gap-3">
+          <Button variant="ghost" size="sm" icon={<Filter className="w-4 h-4" />}>
+            <span className="hidden sm:inline">Filter</span>
           </Button>
-          <Button variant="ghost" icon={<Calendar className="w-4 h-4" />}>
-            Jan 2024 - Jun 2024
+          <Button variant="ghost" size="sm" icon={<Calendar className="w-4 h-4" />}>
+            <span className="hidden sm:inline">Jan 2024 - Jun 2024</span>
+            <span className="sm:hidden">Date</span>
           </Button>
-          <Button icon={<Download className="w-4 h-4" />}>
-            Export Report
+          <Button size="sm" icon={<Download className="w-4 h-4" />}>
+            <span className="hidden sm:inline">Export Report</span>
+            <span className="sm:hidden">Export</span>
           </Button>
         </div>
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <Card className="p-4 sm:p-6">
           <div className="text-center">
-            <p className="text-sm text-gray-500">Total Income</p>
-            <p className="text-2xl font-bold text-primary">$25,500</p>
-            <p className="text-sm text-green-600">+12% from last period</p>
+            <p className="text-xs sm:text-sm text-gray-500">Total Income</p>
+            <p className="text-xl sm:text-2xl font-bold text-primary">$25,500</p>
+            <p className="text-xs sm:text-sm text-green-600">+12% from last period</p>
           </div>
         </Card>
-        <Card>
+        <Card className="p-4 sm:p-6">
           <div className="text-center">
-            <p className="text-sm text-gray-500">Total Expenses</p>
-            <p className="text-2xl font-bold text-secondary">$18,000</p>
-            <p className="text-sm text-red-600">+8% from last period</p>
+            <p className="text-xs sm:text-sm text-gray-500">Total Expenses</p>
+            <p className="text-xl sm:text-2xl font-bold text-secondary">$18,000</p>
+            <p className="text-xs sm:text-sm text-red-600">+8% from last period</p>
           </div>
         </Card>
-        <Card>
+        <Card className="p-4 sm:p-6">
           <div className="text-center">
-            <p className="text-sm text-gray-500">Total Savings</p>
-            <p className="text-2xl font-bold text-green-600">$7,500</p>
-            <p className="text-sm text-green-600">+15% from last period</p>
+            <p className="text-xs sm:text-sm text-gray-500">Total Savings</p>
+            <p className="text-xl sm:text-2xl font-bold text-green-600">$7,500</p>
+            <p className="text-xs sm:text-sm text-green-600">+15% from last period</p>
           </div>
         </Card>
-        <Card>
+        <Card className="p-4 sm:p-6">
           <div className="text-center">
-            <p className="text-sm text-gray-500">Savings Rate</p>
-            <p className="text-2xl font-bold text-accent">29.4%</p>
-            <p className="text-sm text-gray-600">of total income</p>
+            <p className="text-xs sm:text-sm text-gray-500">Savings Rate</p>
+            <p className="text-xl sm:text-2xl font-bold text-accent">29.4%</p>
+            <p className="text-xs sm:text-sm text-gray-600">of total income</p>
           </div>
         </Card>
       </div>
